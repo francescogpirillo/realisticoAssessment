@@ -1,8 +1,22 @@
-import { render, screen } from '@testing-library/react';
+import React from 'react';
+import {configure, shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import App from './App';
+import Users from './containers/Users/Users';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+configure({adapter: new Adapter()});
+
+describe('<App />', () => {
+    let wrapper;
+    beforeEach(()=>{
+         wrapper = shallow(<App/>);
+    })
+    
+    it('should render one Users', () => {      
+        expect(wrapper.find(Users)).toHaveLength(1);
+    });
+
+    it('should render one h1', () => {      
+        expect(wrapper.find('h1')).toHaveLength(1);
+    });
 });
