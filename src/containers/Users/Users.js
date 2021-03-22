@@ -27,9 +27,9 @@ const Users = () => {
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const filteredUsers = users?.filter((user) => {return user.name.toLowerCase().includes(searchText.toLowerCase()) ||
-        user.username.toLowerCase().includes(searchText.toLowerCase()) ||
         user.email.toLowerCase().includes(searchText.toLowerCase()) ||
         user.phone.toLowerCase().includes(searchText.toLowerCase()) ||
+        user.website.toLowerCase().includes(searchText.toLowerCase()) ||
         user.company.name.toLowerCase().includes(searchText.toLowerCase()) ||
         user.company.catchPhrase.toLowerCase().includes(searchText.toLowerCase()) ||
         user.address.city.toLowerCase().includes(searchText.toLowerCase()) ||
