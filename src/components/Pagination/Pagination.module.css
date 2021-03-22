@@ -4,7 +4,14 @@
   justify-content: center;
 }
 
-ul li {
+.pagination ul li {
   display: inline;
   margin: 0.5rem;
+}
+
+button.active:focus, button.active{
+  background-color: #fff;
+  border-color: #606c76;
+  color: #606c76;
+  outline: 0;
 }

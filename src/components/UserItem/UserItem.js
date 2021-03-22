@@ -1,10 +1,11 @@
 import React from 'react';
 import css from './UserItem.module.css';
+import PropTypes from 'prop-types';
 
 const UserItem = ({ name, email, address, website, phone, company }) => {
 
     return (
-        <div className={`${css.userItem}`}>
+        <div className={css.userItem}>
             <div className="row">
                 <div className="column">
                     <div className={css.name}>
@@ -13,7 +14,7 @@ const UserItem = ({ name, email, address, website, phone, company }) => {
                 </div>
             </div>
             <div className="row">
-                <div className={`column ${css.marginTopButtom}`}>
+                <div className={`column ${css.marginTopBottom}`}>
                     <div className={css.title}>
                         Contacts
                     </div>
@@ -24,36 +25,36 @@ const UserItem = ({ name, email, address, website, phone, company }) => {
                         tel. {phone}
                     </div>
                     <div>
-                        <a href={website}>{website}</a>
+                        <a rel="noreferrer" href={`http://` + website} target="_blank">{website}</a>
                     </div>
                 </div>
-                <div className={`column ${css.marginTopButtom}`}>
+                <div className={`column ${css.marginTopBottom}`}>
                     <div className={css.title}>
                         Company
                     </div>
                     <div>
-                        {company.name}
+                        {company?.name}
                     </div>
                     <div>
-                        {company.catchPhrase}
+                        {company?.catchPhrase}
                     </div>
                 </div>
-                <div className={`column ${css.marginTopButtom}`}>
+                <div className={`column ${css.marginTopBottom}`}>
                     <div className={css.title}>
                         Address
                     </div>
                     <div className={css.address}>
                         <div>
-                            {address.city}
+                            {address?.city}
                         </div>
                         <div>
-                            {address.street}
+                            {address?.street}
                         </div>
                         <div>
-                            {address.zipcode}
+                            {address?.zipcode}
                         </div>
                         <div>
-                            <a rel="noreferrer" href={'https://www.google.com/maps/search/?api=1&amp;query=' + address.geo.lat + ',' + address.geo.lng} target="_blank">
+                            <a rel="noreferrer" href={'http://www.google.com/maps/place/' + address?.geo?.lat + ',' + address?.geo?.lng} target="_blank">
                                 <span>see on the map</span>
                             </a>
                         </div>
@@ -63,5 +64,14 @@ const UserItem = ({ name, email, address, website, phone, company }) => {
         </div>
     )
 }
+
+UserItem.propTypes = {
+    name: PropTypes.string,
+    email: PropTypes.string,
+    website: PropTypes.string,
+    phone: PropTypes.string,
+    company: PropTypes.object,
+    address: PropTypes.object
+};
 
 export default UserItem;

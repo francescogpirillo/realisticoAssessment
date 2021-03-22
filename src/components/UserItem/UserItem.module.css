@@ -3,10 +3,10 @@ h5{
     color: #9b4dca ;    
 }
 
-.marginTopButtom{
-    margin:10px 0px
-}
-
 .title{
     font-weight: 600;
+}
+
+.marginTopBottom{
+    margin:10px 0px
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import UserItem from '../UserItem/UserItem';
+import PropTypes from 'prop-types';
 
 const UserList = ({ userList }) => {
 
@@ -7,12 +8,11 @@ const UserList = ({ userList }) => {
         <>
             <table>
                 <tbody>
-                    {userList.map((userItem) =>
+                    {userList && userList.map((userItem) =>
                         <tr key={userItem.id}>
-                            <td>
+                            <td >
                                 <UserItem
                                     name={userItem.name}
-                                    username={userItem.username}
                                     email={userItem.email}
                                     address={userItem.address}
                                     phone={userItem.phone}
@@ -27,5 +27,9 @@ const UserList = ({ userList }) => {
         </>
     )
 }
+
+UserList.propTypes = {
+    userList: PropTypes.array  
+};
 
 export default UserList;

@@ -4,7 +4,7 @@ import UserList from '../../components/UserList/UserList';
 import Pagination from '../../components/Pagination/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../../store/usersSlice';
-import { CircularProgress } from '@material-ui/core';
+import LoadingProgress from '../../components/LoadingProgress/LoadingProgress';
 
 const Users = () => {
 
@@ -12,7 +12,7 @@ const Users = () => {
     const users = useSelector(state => state.users?.users)
     const userStatus = useSelector(state => state.users?.status)
     const error = useSelector(state => state.users?.error)
-    const [text, setText] = useState('');
+    const [searchText, setSearchText] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(4);
 
@@ -26,15 +26,15 @@ const Users = () => {
     // Get current users
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const filteredUsers = users.filter((user) => {return user.name.toLowerCase().includes(text.toLowerCase()) ||
-        user.username.toLowerCase().includes(text.toLowerCase()) ||
-        user.email.toLowerCase().includes(text.toLowerCase()) ||
-        user.phone.toLowerCase().includes(text.toLowerCase()) ||
-        user.company.name.toLowerCase().includes(text.toLowerCase()) ||
-        user.company.catchPhrase.toLowerCase().includes(text.toLowerCase()) ||
-        user.address.city.toLowerCase().includes(text.toLowerCase()) ||
-        user.address.street.toLowerCase().includes(text.toLowerCase()) ||
-        user.address.zipcode.toLowerCase().includes(text.toLowerCase()) 
+    const filteredUsers = users.filter((user) => {return user.name.toLowerCase().includes(searchText.toLowerCase()) ||
+        user.username.toLowerCase().includes(searchText.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchText.toLowerCase()) ||
+        user.phone.toLowerCase().includes(searchText.toLowerCase()) ||
+        user.company.name.toLowerCase().includes(searchText.toLowerCase()) ||
+        user.company.catchPhrase.toLowerCase().includes(searchText.toLowerCase()) ||
+        user.address.city.toLowerCase().includes(searchText.toLowerCase()) ||
+        user.address.street.toLowerCase().includes(searchText.toLowerCase()) ||
+        user.address.zipcode.toLowerCase().includes(searchText.toLowerCase()) 
     })
     const currentUsers= filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
@@ -46,21 +46,21 @@ const Users = () => {
     let content;
 
     if (userStatus === 'loading') {
-        content = <CircularProgress />
+        content = <LoadingProgress/>
     } else if (userStatus === 'succeeded') {
         content = <UserList userList={currentUsers} />
     } else if (userStatus === 'failed') {
         <div>{error}</div>
     }
-
+    
     const onChangeHandler = (event) => {
-        setText(event.target.value)
+        setSearchText(event.target.value)
         setCurrentPage(1);
     }
 
     return (
         <>
-            <SearchBar placeHolder={'Search'} onChange = {onChangeHandler}  type ="search"/>
+            <SearchBar placeHolder={'Search'} onChange={onChangeHandler} type="search"/>
             {content}
             <Pagination usersPerPage={usersPerPage}
                 totalUsers={filteredUsers.length}
