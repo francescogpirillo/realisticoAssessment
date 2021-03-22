@@ -55,7 +55,7 @@ const UserItem = ({ name, email, address, website, phone, company }) => {
                         </div>
                         <div>
                             <a rel="noreferrer" href={'http://www.google.com/maps/place/' + address?.geo?.lat + ',' + address?.geo?.lng} target="_blank">
-                                <span>see on the map</span>
+                                <span>show on map</span>
                             </a>
                         </div>
                     </div>
