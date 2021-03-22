@@ -26,7 +26,7 @@ const Users = () => {
     // Get current users
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const filteredUsers = users.filter((user) => {return user.name.toLowerCase().includes(searchText.toLowerCase()) ||
+    const filteredUsers = users?.filter((user) => {return user.name.toLowerCase().includes(searchText.toLowerCase()) ||
         user.username.toLowerCase().includes(searchText.toLowerCase()) ||
         user.email.toLowerCase().includes(searchText.toLowerCase()) ||
         user.phone.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -36,7 +36,7 @@ const Users = () => {
         user.address.street.toLowerCase().includes(searchText.toLowerCase()) ||
         user.address.zipcode.toLowerCase().includes(searchText.toLowerCase()) 
     })
-    const currentUsers= filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+    const currentUsers= filteredUsers?.slice(indexOfFirstUser, indexOfLastUser);
 
     //Change page
     const onPaginateHandler = pageNumber => setCurrentPage(pageNumber);
@@ -52,7 +52,7 @@ const Users = () => {
     } else if (userStatus === 'failed') {
         <div>{error}</div>
     }
-    
+
     const onChangeHandler = (event) => {
         setSearchText(event.target.value)
         setCurrentPage(1);
@@ -63,7 +63,7 @@ const Users = () => {
             <SearchBar placeHolder={'Search'} onChange={onChangeHandler} type="search"/>
             {content}
             <Pagination usersPerPage={usersPerPage}
-                totalUsers={filteredUsers.length}
+                totalUsers={filteredUsers?.length}
                 currentPage={currentPage}
                 paginate={onPaginateHandler}
                 previousPage={onPreviousPageHandler}

@@ -8,7 +8,7 @@ const UserList = ({ userList }) => {
         <>
             <table>
                 <tbody>
-                    {userList && userList.map((userItem) =>
+                    {userList && userList.map((userItem) => 
                         <tr key={userItem.id}>
                             <td >
                                 <UserItem
