@@ -4,14 +4,10 @@ import Users from './containers/Users/Users';
 
 function App() {
   return (
-    <>
-      <header>
-        <h1>Users</h1>
-      </header>
-      <section className="container">
-        <Users />
-      </section>
-    </>
+    <div className="container">
+      <h1>Users</h1>
+      <Users />
+    </div>    
   );
 }
 export default App;
