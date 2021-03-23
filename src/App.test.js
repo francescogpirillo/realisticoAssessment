@@ -19,12 +19,4 @@ describe('<App />', () => {
     it('should render one h1', () => {      
         expect(wrapper.find('h1')).toHaveLength(1);
     });
-
-    it('should render one header', () => {      
-        expect(wrapper.find('header')).toHaveLength(1);
-    });
-
-    it('should render one section', () => {      
-        expect(wrapper.find('section')).toHaveLength(1);
-    });
 });
